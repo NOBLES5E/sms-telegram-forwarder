@@ -14,4 +14,4 @@ Forward your SMS to telegram with `termux-api`.
 ```
 5. Disable battery optimization for the Termux App.
 
-Then all your new SMS will be forwarded to your telegram chat room.
+Now restart your phone, all your new SMS will be forwarded to your telegram chat room.
