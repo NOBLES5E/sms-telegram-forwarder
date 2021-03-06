@@ -85,10 +85,12 @@ struct Cli {
 
 fn main() {
     let args: Cli = Cli::from_args();
-    eprintln!("{:#?}", args);
     let mut all_sms = AllSms::default();
     all_sms.refresh_data();
     let mut last_date = all_sms.last_date;
+    let send_message_url = format!("https://api.telegram.org/bot{api_key}/sendMessage?chat_id={chatid}&text={text}",
+                                   api_key = args.bot_token, chatid = args.chat_id, text = "sms forwarder successfully started");
+    ureq::get(send_message_url.as_str()).call().unwrap().into_string().unwrap();
     loop {
         std::thread::sleep(Duration::from_secs(args.interval_seconds));
         all_sms.refresh_data();
